@@ -6,9 +6,15 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const utils = require('./utils');
 const config = require('../config');
 
+const PUBLIC_PATH =
+  process.env.NODE_ENV === 'production'
+    ? config.build.assetsPublicPath
+    : config.dev.assetsPublicPath;
+
 module.exports = {
-	entry: "./src/index.ts",
+	entry: "./src/index",
 	output: {
+		publicPath: PUBLIC_PATH,
 		filename: '[name].js',
 		chunkFilename: '[name].min.js',
 		path: config.build.assetsRoot
